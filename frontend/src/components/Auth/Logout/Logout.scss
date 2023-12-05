@@ -1,0 +1,11 @@
+@use "../../../SCSS/variables" as *;
+
+.lb {
+  background: $m1;
+  border-color: $m2;
+
+  &:hover {
+    background: $m2;
+    border-color: $m1;
+  }
+}

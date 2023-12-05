@@ -1,0 +1,157 @@
+@use "../../SCSS" as *;
+
+.header {
+  background-color: $primary-color;
+  color: map-get($base-colors, "black");
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    &-link {
+      img {
+        position: relative;
+        width: 220px;
+        height: 80px;
+
+        @include media("tablet") {
+          z-index: 10;
+          width: 150px;
+          height: 60px;
+        }
+      }
+    }
+  }
+
+  &__nav {
+    &-list {
+      list-style: none;
+      @include flex-center;
+      gap: 1rem;
+    }
+
+    &-item {
+      display: flex;
+      gap: 1rem;
+
+      @include media("tablet") {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+    }
+
+    &-link {
+      @include flex-center;
+      gap: 0.4rem;
+      @include button($white, $black);
+      // border-radius: 15px 225px 255px 15px 15px 255px 225px 15px !important;
+      border-radius: 10px;
+
+      @include font-size($normal-font-size, 1);
+      text-decoration: none;
+      border: 2px solid $d2;
+      font-weight: 700;
+
+      transition:
+        color 0.5s,
+        transform 0.2s,
+        background-color 0.2s;
+
+      &:hover {
+        background: $d1;
+        color: $white;
+        box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+        transform: translate3d(0, 2px, 0);
+      }
+    }
+
+    &-toggle {
+      @include font-size($normal-font-size);
+
+      &:hover {
+      }
+
+      svg {
+        display: none;
+      }
+    }
+
+    @include media("tablet") {
+      position: absolute;
+      top: 0;
+      left: -110%;
+      justify-content: flex-start;
+      width: 100%;
+      border-radius: 14px;
+      backdrop-filter: blur(4px);
+      align-items: center;
+      font-weight: 700;
+      z-index: 1;
+      padding-top: 80px;
+      background: map-get($all-colors, $white);
+
+      &-list {
+        @include flex-column;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 25px 20px -20px;
+        border-radius: 10px;
+        margin: 0.4rem;
+        margin-top: 1rem;
+        gap: 0.2rem;
+        padding: 1.8rem 0 2rem 0;
+        background: $w1;
+      }
+
+      &-link {
+        @include font-size($small-font-size);
+        background: map-get($all-colors, "gray-lightest");
+        color: $black;
+        outline: 1px solid $d1;
+        gap: 0.2rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        padding: 0.6rem 1.2rem;
+        margin: 0.4rem;
+        border: none;
+        transition:
+          color 0.5s,
+          transform 0.2s,
+          background-color 0.2s;
+
+        & svg {
+          margin-right: 0.2rem;
+          display: flex;
+          align-items: center;
+        }
+        &:hover {
+          background: rgba($d1, 1);
+          backdrop-filter: blur(20px);
+          border-radius: 10px;
+          color: $white;
+          outline: 1px solid $w4;
+          transition: transform 0.2s ease-in;
+          transform: translate3d(0, 0px, 0) scale(1.2);
+        }
+      }
+
+      @include media("tablet") {
+        &-toggle {
+          cursor: pointer;
+          @include font-size($large-font-size);
+          z-index: 10;
+          svg {
+            display: block;
+          }
+        }
+        &.menu-open {
+          transform: rotate(180deg);
+        }
+
+        &.menu-active {
+          left: 0;
+          transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+        }
+      }
+    }
+  }
+}

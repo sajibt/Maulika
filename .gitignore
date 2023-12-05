@@ -1,0 +1,38 @@
+# Exclude node_modules in root
+node_modules/
+
+# Exclude node_modules in backend
+backend/node_modules/
+
+# Exclude node_modules in frontend
+frontend/node_modules/
+
+#tags
+/tags
+
+# Logs and environment files
+logs
+*.log
+*.env
+!example.env
+
+# Build files
+build/
+dist/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+

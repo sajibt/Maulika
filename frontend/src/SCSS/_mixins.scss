@@ -1,0 +1,131 @@
+@use "colors" as *;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin button($background-color, $text-color) {
+  background-color: $background-color;
+  color: $text-color;
+  padding: 0.8rem 1.4rem;
+  // margin: 1rem 0 0 1rem;
+  border: none;
+  border-radius: 100vh;
+  cursor: pointer;
+}
+
+//box mixins
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+//mixin for font size
+@mixin font-size($font-size, $line-height: normal, $letter-spacing: normal) {
+  font-size: $font-size * 1px;
+  // font-size: $font-size * 0.1rem;
+  // example using rem values and 62.5% font-size so 1rem = 10px
+
+  @if $line-height==normal {
+    line-height: normal;
+  } @else {
+    line-height: calc($line-height / $font-size);
+  }
+
+  @if $letter-spacing==normal {
+    letter-spacing: normal;
+  } @else {
+    letter-spacing: calc($letter-spacing / $font-size * 1em);
+  }
+}
+
+@mixin fade($type) {
+  @if $type== "hide" {
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 1s,
+      opacity 1s;
+  } @else if $type== "show" {
+    visibility: visible;
+    opacity: 1;
+    transition:
+      visibility 1s,
+      opacity 1s;
+  }
+}
+
+//Media query mixins
+$breakpoints: (
+  "mobile": 480px,
+  "tablet": 768px,
+  "large": 1024px,
+  "desktop": 1280px,
+);
+
+//  generate media queries for each
+@mixin media($breakpoint) {
+  @each $name, $value in $breakpoints {
+    @if $breakpoint == $name {
+      @media only screen and (max-width: $value) {
+        @content;
+      }
+    }
+  }
+}
+
+.center {
+  @include flex-center();
+}
+
+@mixin reset() {
+  /* Reset box model and padding */
+  border: 0;
+
+  /* Reset font styles */
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+
+  // Reset list styles
+  list-style: none;
+
+  /* Reset links */
+  text-decoration: none;
+  color: inherit;
+
+  /* Reset form elements */
+  background: transparent;
+  outline: none;
+
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Mixins for gradiens and shadows
+@mixin gradient($color) {
+  $darkerColor: map-get($all-colors, "#{$color}-darker");
+  $lighterColor: map-get($all-colors, "#{$color}-lighter");
+
+  background: linear-gradient(-45deg, $darkerColor, $lighterColor);
+
+  transition: all ease-in-out 300ms;
+}
+
+@mixin shadow($color) {
+  $colorShadow: map-get($all-colors, "#{$color}-dark");
+  box-shadow: 0px 17px 10px -10px rgba($colorShadow, 0.4);
+
+  &:hover {
+    box-shadow: 0px 17px 10px -8px rgba($colorShadow, 0.2);
+    transform: translate(0px, -5px) scale(1.08);
+  }
+}

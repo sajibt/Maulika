@@ -1,0 +1,94 @@
+/* SignupForm.scss */
+
+.signup-form {
+  &__back-button {
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__form {
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  &__field-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  &__field {
+    width: 100%;
+    @media (min-width: 640px) {
+      width: 50%;
+    }
+    margin-bottom: 1rem;
+    @media (min-width: 640px) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    display: block;
+    color: #333;
+    font-weight: bold;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.25rem;
+    background-color: #f4f4f4;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+    }
+  }
+
+  &__error {
+    color: #ff0000;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  &__submit-button {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #555;
+    }
+  }
+
+  &__login-link {
+    margin-top: 1rem;
+  }
+
+  &__login-text {
+    color: #007bff;
+    text-decoration: none;
+    &:hover {
+      color: #0056b3;
+    }
+  }
+}
