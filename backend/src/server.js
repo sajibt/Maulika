@@ -12,6 +12,8 @@ const connectDB = require("../database/connection");
 // Import routes
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const buyerRoutes = require("./routes/buyerRoutes");
+const sellerRoutes = require("./routes/sellerRoutes");
 
 const app = express();
 
@@ -63,6 +65,8 @@ if (process.env.NODE_ENV === "development") {
 // Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/buyer", buyerRoutes);
+app.use("/api/v1/seller", sellerRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

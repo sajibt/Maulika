@@ -1,9 +1,7 @@
 const User = require("../models/user");
 const { appError } = require("../utils/utils");
 
-const updateRole = async (req, res) => {
-  const { newRole } = req.body;
-
+const toggleUserRole = async (req, res) => {
   try {
     // Find the logged-in user by ID
     const userToUpdate = await User.findById(req.user._id);
@@ -12,19 +10,19 @@ const updateRole = async (req, res) => {
       return res.status(error.statusCode).json(error);
     }
 
-    // Update the role
-    userToUpdate.role = newRole;
+    // Toggle between "buyer" and "seller"
+    userToUpdate.role = userToUpdate.role === "buyer" ? "seller" : "buyer";
     await userToUpdate.save();
 
-    res.json({ message: "User role updated successfully", user: userToUpdate });
+    res.json({ message: "User role toggled successfully", user: userToUpdate });
   } catch (error) {
     console.error(error);
-    const errorMessage = "Error updating user role";
+    const errorMessage = "Error toggling user role";
     const appError = appError(errorMessage, 500);
     res.status(appError.statusCode).json(appError);
   }
 };
 
 module.exports = {
-  updateRole,
+  toggleUserRole,
 };

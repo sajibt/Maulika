@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const { getBuyerData } = require("../controllers/buyerControllers");
 const checkAuth = require("../middleware/checkAuth");
-const { toggleUserRole } = require("../controllers/userControllers");
 
-router.put("/toggle-role", checkAuth, toggleUserRole);
+// Buyer route
+router.get("/buyer", checkAuth, getBuyerData);
 
 module.exports = router;

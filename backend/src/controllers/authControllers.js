@@ -140,6 +140,7 @@ const getGoogleUser = async (user) => {
     email: user.email,
     username: user.username,
     image: user.image,
+    role: user.role,
   };
 };
 
@@ -150,6 +151,7 @@ const getEmailUser = async (user) => {
     email: user.email,
     username: user.username,
     image: user.image,
+    role: user.role,
   };
 };
 
